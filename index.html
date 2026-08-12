@@ -213,7 +213,10 @@
 
         /* 项目经历头像圆圈 */
         .section-title-row { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
-        .section-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 3px solid #ff9a3c; box-shadow: 0 4px 16px rgba(255,140,0,0.2); flex-shrink: 0; }
+        .section-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid #ff9a3c; box-shadow: 0 4px 16px rgba(255,140,0,0.2); flex-shrink: 0; }
+        /* 能力区域人物装饰 */
+        .skills-character { position: absolute; right: -10px; top: -30px; height: 240px; width: auto; z-index: 0; opacity: 0.85; pointer-events: none; transform: rotate(-8deg); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12)); }
+        @media (max-width: 768px) { .skills-character { display: none; } }
         .hero-aura { position: absolute; inset: 0; overflow: hidden; z-index: 1; background: #fffbf5; }
         .aura-blob { position: absolute; border-radius: 50%; filter: blur(70px); mix-blend-mode: multiply; opacity: 0.65; }
         .aura-blob-1 { width: 560px; height: 560px; left: 8%; top: 12%; background: radial-gradient(circle, #ff9a3c 0%, #ff7a00 40%, transparent 70%); animation: auraFloat1 18s ease-in-out infinite; }
@@ -803,6 +806,7 @@
       <section id="skills" class="py-32 px-6 pg-section">
         <div class="pg-bg"><div class="pg-grid secondary"></div></div>
         <div class="max-w-6xl mx-auto pg-content relative">
+          <img class="skills-character" src="assets/images/character-cutout.png" alt="" />
           <p class="section-label">SKILLS</p>
           <h2 class="section-title mb-16" data-zh="能力与工具" data-en="Skills &amp; Tools">能力与工具</h2>
           <div class="flex flex-wrap gap-4 md:gap-5 justify-center items-center py-12">
