@@ -211,8 +211,9 @@
         .lang-btn { font-size: 13px; padding: 4px 12px; border-radius: var(--brand-radius-sm); border: 1px solid var(--brand-border); background: var(--brand-card); cursor: pointer; transition: all 0.2s; font-family: var(--brand-font-mono); color: var(--brand-foreground); }
         .lang-btn:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
 
-        /* Hero 视频 */
-        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        /* Hero 图片 + Grid Rise */
+        .hero-bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+        #gridRiseCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; z-index: 1; }
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0) 100%); }
         .hero-name-cn { font-size: clamp(48px, 8vw, 96px); font-weight: 800; letter-spacing: -0.02em; color: rgba(255,255,255,1); line-height: 1.1; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
         .hero-name-en { font-size: clamp(20px, 3vw, 32px); font-weight: 500; color: rgba(255,255,255,0.85); letter-spacing: 0.05em; font-family: var(--brand-font-sans); }
@@ -355,10 +356,8 @@
 
       <!-- ==================== Hero 区 ==================== -->
       <section id="hero" class="relative h-screen min-h-[600px] w-full overflow-hidden">
-        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="" id="heroVideo">
-          <source src="https://liu-portfolio-81460.oss-cn-hangzhou.aliyuncs.com/hero-character.mp4?OSSAccessKeyId=LTAI5t8BcUzDofdQ4RH3RzP1&amp;Expires=1849601921&amp;Signature=ZHgq65CeI4wi9sWG5tW0GipRpCU%3D" type="video/mp4">
-          <source src="assets/video/hero-character.mp4" type="video/mp4">
-        </video>
+        <img class="hero-bg-img" src="assets/images/character-hero.png" alt="刘沛嘉" />
+        <canvas id="gridRiseCanvas"></canvas>
         <div class="hero-overlay"></div>
         <div class="relative h-full max-w-6xl mx-auto px-6 flex flex-col justify-end pb-24">
           <p class="hero-name-en mb-3" data-zh="Peijia Liu · 2027" data-en="Peijia Liu · 2027">Peijia Liu · 2027</p>
@@ -955,6 +954,180 @@
       </script>
     </main>
     <script>lucide.createIcons();</script>
+    <!-- Grid Rise WebGL Effect -->
+    <script>
+    (function() {
+      const canvas = document.getElementById('gridRiseCanvas');
+      if (!canvas) return;
+      const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: false });
+      if (!gl) return;
+
+      const vsSource = `
+        attribute vec2 aPos;
+        void main() { gl_Position = vec4(aPos, 0.0, 1.0); }
+      `;
+
+      const fsSource = `
+        precision highp float;
+        uniform vec2 uRes;
+        uniform vec2 uMouse;
+        uniform float uTime;
+
+        // Raymarched grid tile field that lifts and ripples under cursor
+        float sdBox(vec3 p, vec3 b) {
+          vec3 q = abs(p) - b;
+          return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0);
+        }
+
+        float gridHeight(vec2 p, vec2 mouse) {
+          float d = distance(p, mouse);
+          float lift = 0.18 * exp(-d * d * 6.0);
+          float ripple = 0.04 * sin(d * 22.0 - uTime * 3.5) * exp(-d * 3.0);
+          float wave = 0.025 * sin(p.x * 6.0 + uTime * 0.7) * sin(p.y * 6.0 + uTime * 0.5);
+          return lift + ripple + wave;
+        }
+
+        vec3 calcNormal(vec2 p, vec2 mouse) {
+          float e = 0.01;
+          float h = gridHeight(p, mouse);
+          float hx = gridHeight(p + vec2(e, 0.0), mouse);
+          float hy = gridHeight(p + vec2(0.0, e), mouse);
+          return normalize(vec3(h - hx, h - hy, e * 2.0));
+        }
+
+        void main() {
+          vec2 uv = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;
+          vec2 mouse = (uMouse - 0.5 * uRes) / uRes.y;
+          mouse.y = -mouse.y;
+
+          // Grid parameters
+          float gridSize = 0.32;
+          vec2 gridUv = uv / gridSize;
+          vec2 cellId = floor(gridUv);
+          vec2 cellPos = fract(gridUv) - 0.5;
+
+          // Raymarch
+          vec3 ro = vec3(uv * 1.6, 1.2);
+          vec3 rd = normalize(vec3(0.0, 0.0, -1.0));
+          vec3 col = vec3(0.0);
+          float t = 0.0;
+          bool hit = false;
+
+          for (int i = 0; i < 48; i++) {
+            vec3 p = ro + rd * t;
+            vec2 cell = floor(p.xy / gridSize);
+            vec2 localPos = p.xy - cell * gridSize - gridSize * 0.5;
+            float h = gridHeight(cell * gridSize, mouse);
+            float d = sdBox(vec3(localPos.x, localPos.y, p.z - h), vec3(0.42 * gridSize, 0.42 * gridSize, 0.5));
+            if (d < 0.002) { hit = true; break; }
+            t += d;
+            if (t > 4.0) break;
+          }
+
+          if (hit) {
+            vec3 p = ro + rd * t;
+            vec2 cell = floor(p.xy / gridSize);
+            vec2 worldCell = cell * gridSize;
+            vec3 n = calcNormal(worldCell, mouse);
+            vec3 lightDir = normalize(vec3(0.4, -0.6, 0.8));
+            float diff = max(dot(n, lightDir), 0.0);
+            float dist = distance(worldCell, mouse);
+            float glow = exp(-dist * dist * 5.0);
+
+            // Tile color - bluish grid with cursor glow
+            vec3 baseCol = vec3(0.15, 0.22, 0.38);
+            vec3 glowCol = vec3(0.35, 0.6, 1.0);
+            float edge = 1.0 - smoothstep(0.3, 0.48, length(fract(gridUv) - 0.5));
+            col = baseCol * (0.25 + 0.75 * diff) + glowCol * glow * 0.6;
+            col *= 0.4 + 0.6 * edge;
+            // Add height-based highlight
+            float hVal = gridHeight(worldCell, mouse);
+            col += vec3(0.2, 0.35, 0.6) * hVal * 2.5;
+            // Fog
+            col *= 1.0 - smoothstep(1.5, 3.5, t) * 0.7;
+          } else {
+            // Background - subtle gradient
+            float bgFade = 1.0 - smoothstep(0.0, 1.5, length(uv));
+            col = vec3(0.04, 0.06, 0.12) * bgFade;
+          }
+
+          gl_FragColor = vec4(col, 1.0 - smoothstep(2.5, 4.0, t) * 0.8);
+        }
+      `;
+
+      function compileShader(type, source) {
+        const sh = gl.createShader(type);
+        gl.shaderSource(sh, source);
+        gl.compileShader(sh);
+        if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+          console.error('Shader error:', gl.getShaderInfoLog(sh));
+          return null;
+        }
+        return sh;
+      }
+
+      const vs = compileShader(gl.VERTEX_SHADER, vsSource);
+      const fs = compileShader(gl.FRAGMENT_SHADER, fsSource);
+      const prog = gl.createProgram();
+      gl.attachShader(prog, vs);
+      gl.attachShader(prog, fs);
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const aPos = gl.getAttribLocation(prog, 'aPos');
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      const uRes = gl.getUniformLocation(prog, 'uRes');
+      const uMouse = gl.getUniformLocation(prog, 'uMouse');
+      const uTime = gl.getUniformLocation(prog, 'uTime');
+
+      let mouse = [0, 0];
+      let targetMouse = [0, 0];
+      let startTime = performance.now();
+
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = rect.height * window.devicePixelRatio;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      canvas.addEventListener('mousemove', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        targetMouse[0] = (e.clientX - rect.left) * window.devicePixelRatio;
+        targetMouse[1] = (e.clientY - rect.top) * window.devicePixelRatio;
+      });
+
+      canvas.addEventListener('mouseleave', function() {
+        targetMouse[0] = canvas.width * 0.5;
+        targetMouse[1] = canvas.height * 0.5;
+      });
+
+      // Initialize mouse to center
+      targetMouse[0] = canvas.width * 0.5;
+      targetMouse[1] = canvas.height * 0.5;
+      mouse[0] = targetMouse[0];
+      mouse[1] = targetMouse[1];
+
+      function render() {
+        mouse[0] += (targetMouse[0] - mouse[0]) * 0.08;
+        mouse[1] += (targetMouse[1] - mouse[1]) * 0.08;
+        const time = (performance.now() - startTime) / 1000;
+        gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.uniform2f(uMouse, mouse[0], mouse[1]);
+        gl.uniform1f(uTime, time);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      render();
+    })();
+    </script>
 </body>
 </html>
 
