@@ -1,0 +1,959 @@
+﻿<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刘沛嘉 | 个人作品集</title>
+    <style id="theme-vars">
+/* ===== 刘沛嘉作品集 设计令牌 ===== */
+:root {
+  /* 品牌主色 - 活力橘 */
+  --brand-primary: #EA580C;
+  --brand-primary-foreground: #FFFFFF;
+  --brand-primary-soft: #FFF7ED;
+
+  /* 辅助色 - 多彩体系 */
+  --brand-secondary: #7C3AED;
+  --brand-secondary-foreground: #FFFFFF;
+  --brand-secondary-soft: #F5F3FF;
+
+  --brand-accent: #0EA5E9;
+  --brand-accent-foreground: #FFFFFF;
+  --brand-accent-soft: #F0F9FF;
+
+  --brand-tertiary: #10B981;
+  --brand-tertiary-foreground: #FFFFFF;
+  --brand-tertiary-soft: #ECFDF5;
+
+  --brand-warm: #F59E0B;
+  --brand-warm-soft: #FFFBEB;
+
+  /* 中性表面 - 暖灰 */
+  --brand-background: #FAFAF9;
+  --brand-foreground: #1C1917;
+  --brand-card: #FFFFFF;
+  --brand-card-foreground: #1C1917;
+  --brand-popover: #FFFFFF;
+  --brand-popover-foreground: #1C1917;
+  --brand-muted: #F5F5F4;
+  --brand-muted-foreground: #78716C;
+
+  /* 边框与输入 */
+  --brand-border: #E7E5E4;
+  --brand-input: #E7E5E4;
+  --brand-ring: #EA580C;
+
+  /* 状态色 */
+  --brand-state-success: #16A34A;
+  --brand-state-warning: #EAB308;
+  --brand-state-error: #DC2626;
+  --brand-state-info: #0EA5E9;
+
+  /* 圆角 */
+  --brand-radius-sm: 6px;
+  --brand-radius-md: 10px;
+  --brand-radius-lg: 16px;
+  --brand-radius-xl: 24px;
+
+  /* 字体 */
+  --brand-font-sans: "Inter", "SF Pro Display", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --brand-font-mono: "JetBrains Mono", "SF Mono", "Cascadia Code", Consolas, monospace;
+}
+
+/* 语义别名 - 供 apply-html-head-contract.mjs 解析 */
+:root {
+  --background: var(--brand-background);
+  --foreground: var(--brand-foreground);
+  --card: var(--brand-card);
+  --card-foreground: var(--brand-card-foreground);
+  --popover: var(--brand-popover);
+  --popover-foreground: var(--brand-popover-foreground);
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--brand-primary-foreground);
+  --muted: var(--brand-muted);
+  --muted-foreground: var(--brand-muted-foreground);
+  --border: var(--brand-border);
+  --input: var(--brand-input);
+  --ring: var(--brand-ring);
+  --radius-sm: var(--brand-radius-sm);
+  --radius-md: var(--brand-radius-md);
+  --radius-lg: var(--brand-radius-lg);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-secondary: var(--brand-secondary);
+    --color-secondary-foreground: var(--brand-secondary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-accent: var(--brand-accent);
+    --color-accent-foreground: var(--brand-accent-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-secondary { background-color: var(--brand-secondary); }
+      .text-secondary { color: var(--brand-secondary); }
+      .border-secondary { border-color: var(--brand-secondary); }
+      .ring-secondary { --tw-ring-color: var(--brand-secondary); }
+      .bg-secondary-foreground { background-color: var(--brand-secondary-foreground); }
+      .text-secondary-foreground { color: var(--brand-secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--brand-secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--brand-secondary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-accent { background-color: var(--brand-accent); }
+      .text-accent { color: var(--brand-accent); }
+      .border-accent { border-color: var(--brand-accent); }
+      .ring-accent { --tw-ring-color: var(--brand-accent); }
+      .bg-accent-foreground { background-color: var(--brand-accent-foreground); }
+      .text-accent-foreground { color: var(--brand-accent-foreground); }
+      .border-accent-foreground { border-color: var(--brand-accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--brand-accent-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main>
+      <!-- ==================== 页面自定义样式 ==================== -->
+      <style>
+        /* 导航 */
+        .nav-bar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(12px); background: rgba(250,250,249,0.8); border-bottom: 1px solid var(--brand-border); }
+        .nav-link { color: var(--brand-muted-foreground); font-size: 14px; transition: color 0.2s; }
+        .nav-link:hover { color: var(--brand-foreground); }
+        .lang-btn { font-size: 13px; padding: 4px 12px; border-radius: var(--brand-radius-sm); border: 1px solid var(--brand-border); background: var(--brand-card); cursor: pointer; transition: all 0.2s; font-family: var(--brand-font-mono); color: var(--brand-foreground); }
+        .lang-btn:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+
+        /* Hero 视频 */
+        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0) 100%); }
+        .hero-name-cn { font-size: clamp(48px, 8vw, 96px); font-weight: 800; letter-spacing: -0.02em; color: rgba(255,255,255,1); line-height: 1.1; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+        .hero-name-en { font-size: clamp(20px, 3vw, 32px); font-weight: 500; color: rgba(255,255,255,0.85); letter-spacing: 0.05em; font-family: var(--brand-font-sans); }
+        .hero-tagline { font-size: clamp(14px, 2vw, 18px); color: rgba(255,255,255,0.8); max-width: 560px; line-height: 1.6; }
+
+        /* 数据指标 */
+        .metric-num { font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: var(--brand-primary); font-family: var(--brand-font-mono); letter-spacing: -0.03em; line-height: 1; }
+        .metric-label { font-size: 13px; color: var(--brand-muted-foreground); margin-top: 8px; line-height: 1.4; }
+
+        /* ===== 左侧曲线 + 右侧横排卡片 ===== */
+        .timeline-container { position: relative; padding: 20px 0; }
+        .timeline-curve { position: absolute; top: 0; left: 30px; height: 100%; width: 40px; z-index: 0; pointer-events: none; overflow: visible; }
+        .timeline-items { position: relative; z-index: 1; }
+        .timeline-item { position: relative; margin-bottom: 32px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot { position: absolute; left: 30px; top: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; border-radius: 50%; background: var(--brand-primary); border: 4px solid var(--brand-card); box-shadow: 0 0 0 2px var(--brand-border); z-index: 5; }
+        .timeline-card-wrap { margin-left: 80px; width: calc(100% - 80px); }
+
+        /* 项目卡片（横向） */
+        .project-card { background: var(--brand-card); border: 1px solid var(--brand-border); border-radius: var(--brand-radius-lg); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; display: flex; }
+        .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+        .project-card-img { width: 300px; min-width: 300px; height: auto; object-fit: cover; display: block; }
+        .project-card-img-placeholder { width: 300px; min-width: 300px; background: var(--brand-muted); display: flex; align-items: center; justify-content: center; color: var(--brand-muted-foreground); font-size: 13px; }
+        .project-card-body { padding: 20px 24px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        @media (max-width: 767px) {
+          .project-card { flex-direction: column; }
+          .project-card-img, .project-card-img-placeholder { width: 100%; min-width: 100%; height: 180px; }
+          .timeline-card-wrap { margin-left: 50px; width: calc(100% - 50px); }
+        }
+        .project-tag { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 999px; font-family: var(--brand-font-mono); margin-right: 6px; margin-bottom: 4px; }
+        .project-tag.primary { background: var(--brand-primary-soft); color: var(--brand-primary); }
+        .project-tag.secondary { background: var(--brand-secondary-soft); color: var(--brand-secondary); }
+        .project-tag.accent { background: var(--brand-accent-soft); color: var(--brand-accent); }
+        .project-tag.tertiary { background: var(--brand-tertiary-soft); color: var(--brand-tertiary); }
+        .project-tag.warm { background: var(--brand-warm-soft); color: var(--brand-warm); }
+        .project-subtitle { font-size: 12px; color: var(--brand-muted-foreground); font-family: var(--brand-font-mono); margin-bottom: 10px; }
+        .project-metric { font-size: 13px; color: var(--brand-foreground); font-weight: 600; font-family: var(--brand-font-mono); }
+
+        /* 模态框 */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--brand-card); border-radius: var(--brand-radius-lg); max-width: 800px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 32px; margin: auto; position: relative; animation: modalIn 0.25s ease-out; }
+        @keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .modal-close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 999px; cursor: pointer; background: var(--brand-muted); border: none; display: flex; align-items: center; justify-content: center; color: var(--brand-muted-foreground); transition: all 0.2s; }
+        .modal-close:hover { background: var(--brand-border); color: var(--brand-foreground); }
+        .star-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 20px; }
+        .star-item { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start; }
+        .star-icon { width: 36px; height: 36px; border-radius: var(--brand-radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .star-icon.s { background: var(--brand-primary-soft); }
+        .star-icon.t { background: var(--brand-secondary-soft); }
+        .star-icon.a { background: var(--brand-accent-soft); }
+        .star-icon.r { background: var(--brand-tertiary-soft); }
+        .star-label { font-size: 12px; font-family: var(--brand-font-mono); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+        .star-label.s { color: var(--brand-primary); }
+        .star-label.t { color: var(--brand-secondary); }
+        .star-label.a { color: var(--brand-accent); }
+        .star-label.r { color: var(--brand-tertiary); }
+        .star-text { font-size: 14px; color: var(--brand-foreground); line-height: 1.6; margin-top: 4px; }
+        .modal-metrics { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; padding: 16px; background: var(--brand-muted); border-radius: var(--brand-radius-md); }
+        .modal-metric-item { font-size: 14px; font-weight: 700; font-family: var(--brand-font-mono); color: var(--brand-primary); }
+        .modal-demo-img { width: 100%; border-radius: var(--brand-radius-md); border: 1px solid var(--brand-border); margin-top: 8px; }
+        .modal-demo-label { font-size: 12px; color: var(--brand-muted-foreground); margin-top: 16px; margin-bottom: 4px; font-family: var(--brand-font-mono); }
+        .modal-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--brand-border); }
+        .modal-link { font-size: 14px; color: var(--brand-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+        .modal-link:hover { text-decoration: underline; }
+
+        /* 能力泡泡 */
+        .skill-bubble { display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; border-radius: 999px; background: var(--brand-card); border: 1.5px solid var(--brand-border); font-size: 14px; font-weight: 600; color: var(--brand-foreground); white-space: nowrap; position: relative; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s; }
+        .skill-bubble:hover { transform: translateY(-4px) scale(1.06); box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 10; }
+        .skill-bubble.lg { padding: 14px 28px; font-size: 18px; font-weight: 700; }
+        .skill-bubble.sm { padding: 7px 14px; font-size: 12px; }
+        .skill-bubble.primary { background: var(--brand-primary-soft); border-color: var(--brand-primary); color: var(--brand-primary); }
+        .skill-bubble.secondary { background: var(--brand-secondary-soft); border-color: var(--brand-secondary); color: var(--brand-secondary); }
+        .skill-bubble.accent { background: var(--brand-accent-soft); border-color: var(--brand-accent); color: var(--brand-accent); }
+        .skill-bubble.tertiary { background: var(--brand-tertiary-soft); border-color: var(--brand-tertiary); color: var(--brand-tertiary); }
+        .skill-bubble.warm { background: var(--brand-warm-soft); border-color: var(--brand-warm); color: var(--brand-warm); }
+        @keyframes float-a { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
+        @keyframes float-b { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-8px) rotate(-1deg); } }
+        @keyframes float-c { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(0.5deg); } }
+        .float-a { animation: float-a 6s ease-in-out infinite; }
+        .float-b { animation: float-b 7s ease-in-out infinite; animation-delay: 0.5s; }
+        .float-c { animation: float-c 8s ease-in-out infinite; animation-delay: 1s; }
+        @media (prefers-reduced-motion: reduce) { .float-a, .float-b, .float-c { animation: none; } }
+
+        /* 联系区 */
+        .contact-item { display: flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--brand-card); border: 1px solid var(--brand-border); border-radius: var(--brand-radius-md); transition: border-color 0.2s; }
+        .contact-item:hover { border-color: var(--brand-primary); }
+
+        /* section 标题 */
+        .section-label { font-size: 12px; font-family: var(--brand-font-mono); color: var(--brand-primary); letter-spacing: 0.1em; text-transform: uppercase; }
+        .section-title { font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: var(--brand-foreground); letter-spacing: -0.02em; line-height: 1.2; margin-top: 8px; }
+
+        /* Perspective Grid 3D背景 */
+        .pg-section { position: relative; overflow: hidden; }
+        .pg-bg { position: absolute; bottom: 0; left: 0; right: 0; height: 100%; overflow: hidden; pointer-events: none; z-index: 0; }
+        .pg-grid {
+          position: absolute;
+          bottom: -5%;
+          left: -50%;
+          width: 200%;
+          height: 180%;
+          background-image:
+            linear-gradient(to right, rgba(234, 88, 12, 0.55) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(234, 88, 12, 0.55) 2px, transparent 2px);
+          background-size: 60px 60px;
+          transform: perspective(400px) rotateX(70deg);
+          transform-origin: center bottom;
+          animation: pgScroll 18s linear infinite;
+          -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 95%);
+          mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 95%);
+        }
+        .pg-grid.secondary {
+          background-image:
+            linear-gradient(to right, rgba(124, 58, 237, 0.50) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(124, 58, 237, 0.50) 2px, transparent 2px);
+        }
+        .pg-grid.accent {
+          background-image:
+            linear-gradient(to right, rgba(14, 165, 233, 0.50) 2px, transparent 2px),
+            linear-gradient(to bottom, rgba(14, 165, 233, 0.50) 2px, transparent 2px);
+        }
+        @keyframes pgScroll { from { background-position: 0 0; } to { background-position: 0 60px; } }
+        @media (prefers-reduced-motion: reduce) { .pg-grid { animation: none; } }
+        .pg-content { position: relative; z-index: 1; }
+      </style>
+
+      <!-- ==================== 导航栏 ==================== -->
+      <nav class="nav-bar">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <a href="#hero" class="text-lg font-bold tracking-tight" style="color: var(--brand-foreground);">刘沛嘉</a>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#about" class="nav-link" data-zh="关于" data-en="About">关于</a>
+            <a href="#projects" class="nav-link" data-zh="项目" data-en="Projects">项目</a>
+            <a href="#skills" class="nav-link" data-zh="能力" data-en="Skills">能力</a>
+            <a href="#contact" class="nav-link" data-zh="联系" data-en="Contact">联系</a>
+          </div>
+          <button class="lang-btn" id="langToggle" data-dom-id="lang-toggle">EN</button>
+        </div>
+      </nav>
+
+      <!-- ==================== Hero 区 ==================== -->
+      <section id="hero" class="relative h-screen min-h-[600px] w-full overflow-hidden">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="">
+          <source src="assets/video/hero-character.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="relative h-full max-w-6xl mx-auto px-6 flex flex-col justify-end pb-24">
+          <p class="hero-name-en mb-3" data-zh="Peijia Liu · 2027" data-en="Peijia Liu · 2027">Peijia Liu · 2027</p>
+          <h1 class="hero-name-cn" data-zh="刘沛嘉" data-en="Peijia Liu">刘沛嘉</h1>
+          <p class="hero-tagline mt-6" data-zh="用数据拆解复杂商业问题，用策略推动结果落地" data-en="Decomposing complex business problems with data, driving results with strategy">用数据拆解复杂商业问题，用策略推动结果落地</p>
+          <div class="flex gap-3 mt-8">
+            <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold transition-all" style="background: var(--brand-primary); color: var(--brand-primary-foreground);" data-zh="查看项目" data-en="View Projects">查看项目</a>
+            <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold border transition-all" style="border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,1);" data-zh="联系我" data-en="Get in Touch">联系我</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 核心数据指标 ==================== -->
+      <section class="py-20 px-6 pg-section">
+        <div class="pg-bg"><div class="pg-grid"></div></div>
+        <div class="max-w-6xl mx-auto pg-content">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <div class="metric-num">$0.5亿</div>
+              <div class="metric-label" data-zh="营收三层拆解" data-en="Revenue decomposition">营收三层拆解</div>
+            </div>
+            <div>
+              <div class="metric-num">70%</div>
+              <div class="metric-label" data-zh="定价效率提升" data-en="Pricing efficiency uplift">定价效率提升</div>
+            </div>
+            <div>
+              <div class="metric-num">¥14.4亿</div>
+              <div class="metric-label" data-zh="考核规模支撑" data-en="Assessment scale supported">考核规模支撑</div>
+            </div>
+            <div>
+              <div class="metric-num">8h→40min</div>
+              <div class="metric-label" data-zh="竞品分析效率" data-en="Competitor analysis speed">竞品分析效率</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 项目展示区（左侧曲线 + 右侧横排卡片） ==================== -->
+      <section id="projects" class="py-20 px-6" style="background: var(--brand-card);">
+        <div class="max-w-6xl mx-auto">
+          <p class="section-label">PROJECTS</p>
+          <h2 class="section-title mb-12" data-zh="项目经历" data-en="Selected Projects">项目经历</h2>
+
+          <div class="timeline-container">
+            <!-- SVG 柔和波浪曲线（竖直方向） -->
+            <svg class="timeline-curve" preserveAspectRatio="none" viewBox="0 0 40 1200" fill="none">
+              <path d="M20,0 Q35,150 20,300 Q5,450 20,600 Q35,750 20,900 Q5,1050 20,1200"
+                    stroke="var(--brand-border)" stroke-width="2" fill="none"
+                    stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/>
+            </svg>
+
+            <div class="timeline-items">
+
+              <!-- ===== 项目1：商米科技 ===== -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card-wrap">
+                  <div class="project-card" data-project="sunmi" data-dom-id="card-sunmi">
+                    <img src="assets/images/sunmi-rummix.png" alt="全球化产品经营" class="project-card-img">
+                    <div class="project-card-body">
+                      <div class="mb-2">
+                        <span class="project-tag primary">3C</span>
+                        <span class="project-tag secondary">ToB</span>
+                        <span class="project-tag accent">跨部门沟通</span>
+                        <span class="project-tag tertiary">GTM</span>
+                        <span class="project-tag warm">经营分析</span>
+                      </div>
+                      <h3 class="text-lg font-bold mb-1" data-zh="全球化产品经营" data-en="Global Product Operations">全球化产品经营</h3>
+                      <p class="project-subtitle" data-zh="2026.4-2026.8 · 商米科技实习" data-en="2026.4-2026.8 · Sunmi Internship">2026.4-2026.8 · 商米科技实习</p>
+                      <p class="text-sm mb-3 leading-relaxed" style="color: var(--brand-muted-foreground);" data-zh="参与商用平板GTM全流程，协同5个跨部门打通定价、PVT验证、POC试点；搭建RUM MIX经营看板，首季销量超目标18%。" data-en="Participated in commercial tablet GTM full process, coordinated 5 cross-functional teams; built RUM MIX dashboard, first quarter sales exceeded target by 18%.">参与商用平板GTM全流程，协同5个跨部门打通定价、PVT验证、POC试点；搭建RUM MIX经营看板，首季销量超目标18%。</p>
+                      <div class="flex gap-5 pt-2 border-t" style="border-color: var(--brand-border);">
+                        <span class="project-metric" data-zh="线索+25%" data-en="Leads +25%">线索+25%</span>
+                        <span class="project-metric" data-zh="超目标18%" data-en="+18% target">超目标18%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== 项目2：竞品分析工具 ===== -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card-wrap">
+                  <div class="project-card" data-project="compass" data-dom-id="card-compass">
+                    <img src="assets/images/demo-compass-1.png" alt="竞品分析DEMO" class="project-card-img">
+                    <div class="project-card-body">
+                      <div class="mb-2">
+                        <span class="project-tag secondary">AI</span>
+                        <span class="project-tag accent">SKILL</span>
+                        <span class="project-tag tertiary" data-zh="工作流" data-en="Workflow">工作流</span>
+                        <span class="project-tag primary">Agent</span>
+                        <span class="project-tag warm">RAG</span>
+                      </div>
+                      <h3 class="text-lg font-bold mb-1" data-zh="竞品分析工具" data-en="Competitor Analysis Tool">竞品分析工具</h3>
+                      <p class="project-subtitle" data-zh="2026.4–2026.8 · 独立开发" data-en="2026.4–2026.8 · Independent Development">2026.4–2026.8 · 独立开发</p>
+                      <p class="text-sm mb-3 leading-relaxed" style="color: var(--brand-muted-foreground);" data-zh="一款AI竞品分析工具，输入任意产品名称即可自动生成7大维度结构化报告。基于SKILL体系构建，接入外部API实时获取数据，单次分析从8小时缩短至40分钟。" data-en="An AI competitor analysis tool that auto-generates 7-dimension structured reports from any product name. Built on SKILL framework with external API integration, cutting analysis from 8h to 40min.">一款AI竞品分析工具，输入任意产品名称即可自动生成7大维度结构化报告。基于SKILL体系构建，接入外部API实时获取数据，单次分析从8小时缩短至40分钟。</p>
+                      <div class="flex gap-5 pt-2 border-t" style="border-color: var(--brand-border);">
+                        <span class="project-metric">8h→40min</span>
+                        <span class="project-metric" data-zh="分析维度100%" data-en="100% dimension coverage">分析维度100%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== 项目3：商业数据建模 ===== -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card-wrap">
+                  <div class="project-card" data-project="zzzx" data-dom-id="card-zzzx">
+                    <img src="assets/images/demo-zzzx-1.png" alt="商业数据建模" class="project-card-img">
+                    <div class="project-card-body">
+                      <div class="mb-2">
+                        <span class="project-tag primary">数据测算</span>
+                        <span class="project-tag secondary">SQL</span>
+                        <span class="project-tag accent">Python</span>
+                        <span class="project-tag tertiary">XLOOKUP</span>
+                        <span class="project-tag warm">数据透视表</span>
+                        <span class="project-tag primary">可视化</span>
+                      </div>
+                      <h3 class="text-lg font-bold mb-1" data-zh="商业数据建模" data-en="Business Data Modeling">商业数据建模</h3>
+                      <p class="project-subtitle" data-zh="2025.6-2025.9 · 中智咨询实习 · 某国核项目" data-en="2025.6-2025.9 · CIIC Internship · State Nuclear Project">2025.6-2025.9 · 中智咨询实习 · 某国核项目</p>
+                      <p class="text-sm mb-3 leading-relaxed" style="color: var(--brand-muted-foreground);" data-zh="基于7家业务主体3000+条经营数据，用SQL提取、Python与XLOOKUP清洗，搭建分档测算模型完成全量测算，直接支撑14.4亿元年度业绩考核。" data-en="Built tiered calculation model from 3,000+ data points across 7 business units using SQL, Python, and XLOOKUP, directly supporting ¥1.44B annual performance assessment.">基于7家业务主体3000+条经营数据，用SQL提取、Python与XLOOKUP清洗，搭建分档测算模型完成全量测算，直接支撑14.4亿元年度业绩考核。</p>
+                      <div class="flex gap-5 pt-2 border-t" style="border-color: var(--brand-border);">
+                        <span class="project-metric">¥14.4亿</span>
+                        <span class="project-metric" data-zh="3000+条数据" data-en="3,000+ data points">3000+条数据</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== 项目4：校园舞室 ===== -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card-wrap">
+                  <div class="project-card" data-project="dance" data-dom-id="card-dance">
+                    <img src="assets/images/dance-photo.jpg" alt="校园舞室" class="project-card-img">
+                    <div class="project-card-body">
+                      <div class="mb-2">
+                        <span class="project-tag warm">宣传</span>
+                        <span class="project-tag primary">动态定价</span>
+                        <span class="project-tag secondary">用户留存</span>
+                        <span class="project-tag tertiary">裂变增长</span>
+                      </div>
+                      <h3 class="text-lg font-bold mb-1" data-zh="校园舞室 · 从0到1" data-en="Campus Dance Studio · 0 to 1">校园舞室 · 从0到1</h3>
+                      <p class="project-subtitle" data-zh="2025.2-2025.7 · 核心成员" data-en="2025.2-2025.7 · Core Member">2025.2-2025.7 · 核心成员</p>
+                      <p class="text-sm mb-3 leading-relaxed" style="color: var(--brand-muted-foreground);" data-zh="依托零房租轻资产模式，负责冷启动获客、定价体系设计与用户增长运营，完整跑通获客-转化-留存-裂变闭环，项目累计营收11.4万元。" data-en="Zero-rent asset-light model; led cold-start acquisition, pricing design, and growth operations, completing the acquisition-conversion-retention-referral loop, totaling ¥114K revenue.">依托零房租轻资产模式，负责冷启动获客、定价体系设计与用户增长运营，完整跑通获客-转化-留存-裂变闭环，项目累计营收11.4万元。</p>
+                      <div class="flex gap-5 pt-2 border-t" style="border-color: var(--brand-border);">
+                        <span class="project-metric">¥11.4万</span>
+                        <span class="project-metric" data-zh="复购62%" data-en="62% repurchase">复购62%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /.timeline-items -->
+          </div><!-- /.timeline-container -->
+        </div>
+      </section>
+
+      <!-- ==================== 项目详情模态框 ==================== -->
+      <!-- 商米科技 -->
+      <div class="modal-overlay" id="modal-sunmi">
+        <div class="modal-content">
+          <button class="modal-close" data-close="modal-sunmi" aria-label="Close">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          <div class="mb-3">
+            <span class="project-tag primary">3C</span>
+            <span class="project-tag secondary">ToB</span>
+            <span class="project-tag accent">跨部门沟通</span>
+            <span class="project-tag tertiary">GTM</span>
+            <span class="project-tag warm">经营分析</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-1" data-zh="全球化产品经营" data-en="Global Product Operations">全球化产品经营</h3>
+          <p class="project-subtitle" data-zh="2026.4-2026.8 · 商米科技实习" data-en="2026.4-2026.8 · Sunmi Internship">2026.4-2026.8 · 商米科技实习</p>
+          <div class="star-grid">
+            <div class="star-item">
+              <div class="star-icon s"><i data-lucide="target" class="w-5 h-5" style="color: var(--brand-primary);"></i></div>
+              <div>
+                <p class="star-label s" data-zh="Situation · 情境" data-en="Situation">Situation · 情境</p>
+                <p class="star-text" data-zh="商用平板作为迭代新品需完成系统化GTM上市，同时Gen1产品线需持续跟踪全球7区域经营健康度。" data-en="Commercial tablet as iterated new product needed systematic GTM launch; Gen1 product line required ongoing tracking across 7 global regions.">商用平板作为迭代新品需完成系统化GTM上市，同时Gen1产品线需持续跟踪全球7区域经营健康度。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon t"><i data-lucide="clipboard-list" class="w-5 h-5" style="color: var(--brand-secondary);"></i></div>
+              <div>
+                <p class="star-label t" data-zh="Task · 任务" data-en="Task">Task · 任务</p>
+                <p class="star-text" data-zh="参与新品GTM全流程并搭建经营看板，支撑上市决策与经营复盘。" data-en="Participate in new product GTM full process and build dashboards to support launch decisions and business review.">参与新品GTM全流程并搭建经营看板，支撑上市决策与经营复盘。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon a"><i data-lucide="zap" class="w-5 h-5" style="color: var(--brand-accent);"></i></div>
+              <div>
+                <p class="star-label a" data-zh="Action · 行动" data-en="Action">Action · 行动</p>
+                <p class="star-text" data-zh="协同5个跨部门打通市场洞察、定价策略、PVT验证、POC试点节点；梳理40+行业标杆案例，搭建分级产品矩阵及解决方案白皮书。用SQL+Python+Excel搭建RUM MIX经营看板，按收入、ASP、毛利率三层拆解，并基于看板进行复盘。" data-en="Coordinated 5 cross-functional teams across market insight, pricing, PVT verification, POC pilot; analyzed 40+ benchmark cases, built tiered product matrix and solution white paper. Built RUM MIX dashboard with SQL+Python+Excel, decomposing by revenue, ASP, and gross margin, conducting business reviews.">协同5个跨部门打通市场洞察、定价策略、PVT验证、POC试点节点；梳理40+行业标杆案例，搭建分级产品矩阵及解决方案白皮书。用SQL+Python+Excel搭建RUM MIX经营看板，按收入、ASP、毛利率三层拆解，并基于看板进行复盘。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon r"><i data-lucide="bar-chart-3" class="w-5 h-5" style="color: var(--brand-tertiary);"></i></div>
+              <div>
+                <p class="star-label r" data-zh="Result · 结果" data-en="Result">Result · 结果</p>
+                <p class="star-text" data-zh="试点区域线索转化率提升25%，首季销量超目标18%；经营看板定位低毛利区域并联动优化，迭代后新产品回归KPI区间。" data-en="Pilot region lead conversion up 25%, first quarter sales exceeded target by 18%; dashboard identified low-margin regions, driving iterated new products back to KPI range.">试点区域线索转化率提升25%，首季销量超目标18%；经营看板定位低毛利区域并联动优化，迭代后新产品回归KPI区间。</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-metrics">
+            <span class="modal-metric-item" data-zh="线索+25%" data-en="Leads +25%">线索+25%</span>
+            <span class="modal-metric-item" data-zh="超目标18%" data-en="+18% target">超目标18%</span>
+            <span class="modal-metric-item" data-zh="40+案例" data-en="40+ cases">40+案例</span>
+          </div>
+          <div class="mt-5">
+            <p class="text-xs mb-2" style="color: var(--brand-muted-foreground);" data-zh="项目资料" data-en="Project Materials">项目资料</p>
+            <p class="modal-demo-label" data-zh="GTM全流程" data-en="GTM Full Process">GTM全流程</p>
+            <img src="assets/images/sunmi-flowchart.png" alt="GTM全流程" class="modal-demo-img">
+            <p class="modal-demo-label" data-zh="迭代前产品场景" data-en="Pre-iteration Product Scene">迭代前产品场景</p>
+            <img src="assets/images/sunmi-scene.png" alt="迭代前产品场景" class="modal-demo-img">
+            <p class="modal-demo-label" data-zh="RUM MIX经营看板" data-en="RUM MIX Dashboard">RUM MIX经营看板</p>
+            <img src="assets/images/sunmi-rummix.png" alt="RUM MIX经营看板" class="modal-demo-img">
+            <p class="modal-demo-label" data-zh="经营复盘" data-en="Business Review">经营复盘</p>
+            <img src="assets/images/sunmi-review.png" alt="经营复盘" class="modal-demo-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- 竞品分析工具 -->
+      <div class="modal-overlay" id="modal-compass">
+        <div class="modal-content">
+          <button class="modal-close" data-close="modal-compass" aria-label="Close">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          <div class="mb-3">
+            <span class="project-tag secondary">AI</span>
+            <span class="project-tag accent">SKILL</span>
+            <span class="project-tag tertiary" data-zh="工作流" data-en="Workflow">工作流</span>
+            <span class="project-tag primary">Agent</span>
+            <span class="project-tag warm">RAG</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-1" data-zh="竞品分析工具" data-en="Competitor Analysis Tool">竞品分析工具</h3>
+          <p class="project-subtitle" data-zh="2026.4–2026.8 · 独立开发" data-en="2026.4–2026.8 · Independent Development">2026.4–2026.8 · 独立开发</p>
+          <div class="star-grid">
+            <div class="star-item">
+              <div class="star-icon s"><i data-lucide="target" class="w-5 h-5" style="color: var(--brand-primary);"></i></div>
+              <div>
+                <p class="star-label s" data-zh="Situation · 情境" data-en="Situation">Situation · 情境</p>
+                <p class="star-text" data-zh="实习期间需要频繁进行竞品分析，传统方式每次耗时约8小时，分析维度不统一、质量不稳定。" data-en="During internship, competitor analysis was needed frequently. Traditional methods took ~8 hours per analysis with inconsistent dimensions and quality.">实习期间需要频繁进行竞品分析，传统方式每次耗时约8小时，分析维度不统一、质量不稳定。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon t"><i data-lucide="clipboard-list" class="w-5 h-5" style="color: var(--brand-secondary);"></i></div>
+              <div>
+                <p class="star-label t" data-zh="Task · 任务" data-en="Task">Task · 任务</p>
+                <p class="star-text" data-zh="开发一个标准化的AI竞品分析工具，输入任意产品名称即可自动生成全维度分析报告。" data-en="Build a standardized AI competitor analysis tool that generates full-dimension reports from any product name input.">开发一个标准化的AI竞品分析工具，输入任意产品名称即可自动生成全维度分析报告。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon a"><i data-lucide="zap" class="w-5 h-5" style="color: var(--brand-accent);"></i></div>
+              <div>
+                <p class="star-label a" data-zh="Action · 行动" data-en="Action">Action · 行动</p>
+                <p class="star-text" data-zh="基于SKILL体系独立设计与开发，接入外部API实时获取竞品数据，用户输入产品名称后工具自动执行6步分析流程，输出产品概述、核心差异化、关键规格对比、价格定位、竞争差距速览、核心场景覆盖、Message House共7个标准化模块。同时采用RAG架构搭建证据层（本地库优先+联网搜索兜底）降低AI幻觉风险。在实习中实际投入使用，输入真实竞品名称生成分析报告，最终脱敏处理生成可公开的DEMO。" data-en="Independently designed and built on SKILL framework with external API integration. Users input a product name and the tool executes a 6-step analysis pipeline, outputting 7 standardized modules: product overview, core differentiation, key specs comparison, pricing positioning, competitive gap overview, core scenario coverage, and Message House. RAG evidence layer (local-first + web search fallback) minimizes AI hallucination. Deployed in real internship work with actual competitor names, then desensitized for public DEMO.">基于SKILL体系独立设计与开发，接入外部API实时获取竞品数据，用户输入产品名称后工具自动执行6步分析流程，输出产品概述、核心差异化、关键规格对比、价格定位、竞争差距速览、核心场景覆盖、Message House共7个标准化模块。同时采用RAG架构搭建证据层（本地库优先+联网搜索兜底）降低AI幻觉风险。在实习中实际投入使用，输入真实竞品名称生成分析报告，最终脱敏处理生成可公开的DEMO。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon r"><i data-lucide="bar-chart-3" class="w-5 h-5" style="color: var(--brand-tertiary);"></i></div>
+              <div>
+                <p class="star-label r" data-zh="Result · 结果" data-en="Result">Result · 结果</p>
+                <p class="star-text" data-zh="分析效率从8小时缩短至40分钟，分析维度覆盖率达100%，直接支撑实习期间竞品对标与定价决策。" data-en="Analysis time cut from 8h to 40min, dimension coverage reached 100%, directly supporting internship competitor benchmarking and pricing decisions.">分析效率从8小时缩短至40分钟，分析维度覆盖率达100%，直接支撑实习期间竞品对标与定价决策。</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-metrics">
+            <span class="modal-metric-item">8h→40min</span>
+            <span class="modal-metric-item" data-zh="分析维度100%" data-en="100% dimension coverage">分析维度100%</span>
+          </div>
+          <div class="mt-5">
+            <p class="text-xs mb-2" style="color: var(--brand-muted-foreground);" data-zh="DEMO 截图" data-en="DEMO Screenshots">DEMO 截图</p>
+            <img src="assets/images/demo-compass-1.png" alt="竞品分析DEMO截图1" class="modal-demo-img">
+            <img src="assets/images/demo-compass-2.png" alt="竞品分析DEMO截图2" class="modal-demo-img">
+          </div>
+          <div class="modal-links">
+            <a href="https://gemiju.github.io/compass-competitive-analysis/demo.html" target="_blank" rel="noopener" class="modal-link">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+              <span data-zh="在线 Demo" data-en="Live Demo">在线 Demo</span>
+            </a>
+            <a href="https://github.com/Gemiju/compass-competitive-analysis" target="_blank" rel="noopener" class="modal-link">
+              <i data-lucide="github" class="w-4 h-4"></i>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 商业数据建模 -->
+      <div class="modal-overlay" id="modal-zzzx">
+        <div class="modal-content">
+          <button class="modal-close" data-close="modal-zzzx" aria-label="Close">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          <h3 class="text-2xl font-bold mb-1" data-zh="商业数据建模" data-en="Business Data Modeling">商业数据建模</h3>
+          <p class="project-subtitle" data-zh="2025.6-2025.9 · 中智咨询实习 · 某国核项目" data-en="2025.6-2025.9 · CIIC Internship · State Nuclear Project">2025.6-2025.9 · 中智咨询实习 · 某国核项目</p>
+          <div class="star-grid">
+            <div class="star-item">
+              <div class="star-icon s"><i data-lucide="target" class="w-5 h-5" style="color: var(--brand-primary);"></i></div>
+              <div>
+                <p class="star-label s" data-zh="Situation · 情境" data-en="Situation">Situation · 情境</p>
+                <p class="star-text" data-zh="某国家核电下属7家成员单位需进行年度业绩考核，涉及14.4亿元利润目标，需科学、公平的分档测算。" data-en="7 member units under a state nuclear power company needed annual performance assessment involving ¥1.44B profit target, requiring scientific tiered calculation.">某国家核电下属7家成员单位需进行年度业绩考核，涉及14.4亿元利润目标，需科学、公平的分档测算。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon t"><i data-lucide="clipboard-list" class="w-5 h-5" style="color: var(--brand-secondary);"></i></div>
+              <div>
+                <p class="star-label t" data-zh="Task · 任务" data-en="Task">Task · 任务</p>
+                <p class="star-text" data-zh="基于3000+条经营数据搭建数据分析模型，按业务规模分层完成全量测算。" data-en="Build data analysis model from 3,000+ data points, completing full calculation layered by business scale.">基于3000+条经营数据搭建数据分析模型，按业务规模分层完成全量测算。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon a"><i data-lucide="zap" class="w-5 h-5" style="color: var(--brand-accent);"></i></div>
+              <div>
+                <p class="star-label a" data-zh="Action · 行动" data-en="Action">Action · 行动</p>
+                <p class="star-text" data-zh="先用SQL从数据库提取7家业务主体3000+条经营数据（利润、ROE、劳动生产率等），再用Python、XLOOKUP、数据透视表清洗数据并搭建分析模型；按业务规模分层，对7家成员单位逐档完成两档全量测算，汇总生成测算结果总表。" data-en="Extracted 3,000+ data points from 7 business units using SQL (profit, ROE, labor productivity), cleaned data with Python, XLOOKUP, and pivot tables; built analysis model layered by business scale, completed two-tier full calculation for all 7 units, and generated aggregated result tables.">先用SQL从数据库提取7家业务主体3000+条经营数据（利润、ROE、劳动生产率等），再用Python、XLOOKUP、数据透视表清洗数据并搭建分析模型；按业务规模分层，对7家成员单位逐档完成两档全量测算，汇总生成测算结果总表。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon r"><i data-lucide="bar-chart-3" class="w-5 h-5" style="color: var(--brand-tertiary);"></i></div>
+              <div>
+                <p class="star-label r" data-zh="Result · 结果" data-en="Result">Result · 结果</p>
+                <p class="star-text" data-zh="模型落地应用，输出最优策略建议，直接支撑14.4亿元规模的年度业绩考核。" data-en="Model deployed, output optimal strategy recommendations, directly supporting ¥1.44B annual performance assessment.">模型落地应用，输出最优策略建议，直接支撑14.4亿元规模的年度业绩考核。</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-metrics">
+            <span class="modal-metric-item">¥14.4亿</span>
+            <span class="modal-metric-item" data-zh="3000+条数据" data-en="3,000+ data points">3000+条数据</span>
+            <span class="modal-metric-item" data-zh="7家单位" data-en="7 units">7家单位</span>
+          </div>
+          <div class="mt-5">
+            <p class="text-xs mb-2" style="color: var(--brand-muted-foreground);" data-zh="实际Excel截图" data-en="Actual Excel Screenshots">实际Excel截图</p>
+            <p class="modal-demo-label" data-zh="数据分析过程" data-en="Data Analysis Process">数据分析过程</p>
+            <img src="assets/images/demo-zzzx-1.png" alt="数据分析过程" class="modal-demo-img">
+            <p class="modal-demo-label" data-zh="测算结果汇总" data-en="Calculation Results Summary">测算结果汇总</p>
+            <img src="assets/images/demo-zzzx-2.png" alt="测算结果汇总" class="modal-demo-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- 校园舞室 -->
+      <div class="modal-overlay" id="modal-dance">
+        <div class="modal-content">
+          <button class="modal-close" data-close="modal-dance" aria-label="Close">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          <div class="mb-3">
+            <span class="project-tag warm">宣传</span>
+            <span class="project-tag primary">动态定价</span>
+            <span class="project-tag secondary">用户留存</span>
+            <span class="project-tag tertiary">裂变增长</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-1" data-zh="校园舞室 · 从0到1" data-en="Campus Dance Studio · 0 to 1">校园舞室 · 从0到1</h3>
+          <p class="project-subtitle" data-zh="2025.2-2025.7 · 核心成员" data-en="2025.2-2025.7 · Core Member">2025.2-2025.7 · 核心成员</p>
+          <div class="star-grid">
+            <div class="star-item">
+              <div class="star-icon s"><i data-lucide="target" class="w-5 h-5" style="color: var(--brand-primary);"></i></div>
+              <div>
+                <p class="star-label s" data-zh="Situation · 情境" data-en="Situation">Situation · 情境</p>
+                <p class="star-text" data-zh="校园市场缺乏优质、价格合理的舞蹈培训资源；同时学校场地可免费使用，仅需承担装修费与老师课酬，具备轻资产启动条件。" data-en="Campus market lacked quality, affordable dance training; school space was free to use, requiring only decoration and teacher fees — ideal for asset-light launch.">校园市场缺乏优质、价格合理的舞蹈培训资源；同时学校场地可免费使用，仅需承担装修费与老师课酬，具备轻资产启动条件。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon t"><i data-lucide="clipboard-list" class="w-5 h-5" style="color: var(--brand-secondary);"></i></div>
+              <div>
+                <p class="star-label t" data-zh="Task · 任务" data-en="Task">Task · 任务</p>
+                <p class="star-text" data-zh="作为核心成员参与全链路GTM策略落地，依托零房租轻资产模式，负责冷启动获客、定价体系设计与用户增长运营。" data-en="Core member driving full-funnel GTM strategy in a zero-rent asset-light model, owning cold-start acquisition, pricing design, and growth operations.">作为核心成员参与全链路GTM策略落地，依托零房租轻资产模式，负责冷启动获客、定价体系设计与用户增长运营。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon a"><i data-lucide="zap" class="w-5 h-5" style="color: var(--brand-accent);"></i></div>
+              <div>
+                <p class="star-label a" data-zh="Action · 行动" data-en="Action">Action · 行动</p>
+                <p class="star-text" data-zh="冷启动获客：联动小红书、校园墙渠道以推文裂变引流，两周沉淀500人私域社群，转化240人到店体验；遇场地验收延期，将618元双人三周早鸟卡权益优化，化空档为蓄水期，办卡量从预期46人提升至72人（+56%）。定价与排课：搭建「流量-体验-转化」销售漏斗，基于早鸟期课程满员验证，推出1418元学期畅跳正式卡（较早鸟卡+70%），完成引流款+利润款产品矩阵；结合到课人数动态调整排课，从日均2节扩容至3节。留存与裂变：发布录课视频、课程预告提升粘性，配套老带新激励带动自然裂变。" data-en="Cold-start: Leveraged Xiaohongshu & campus channels with viral posts, built 500-person private community in 2 weeks, converted 240 to trial; turned venue delay into pre-launch by optimizing ¥618 early-bird card, boosting sign-ups from 46 to 72 (+56%). Pricing: Built traffic-trial-conversion funnel, launched ¥1,418 semester pass (+70% vs early-bird) after demand validation, expanded from 2 to 3 daily classes. Retention: Published recap videos & previews, launched referral incentives to drive organic growth.">冷启动获客：联动小红书、校园墙渠道以推文裂变引流，两周沉淀500人私域社群，转化240人到店体验；遇场地验收延期，将618元双人三周早鸟卡权益优化，化空档为蓄水期，办卡量从预期46人提升至72人（+56%）。定价与排课：搭建「流量-体验-转化」销售漏斗，基于早鸟期课程满员验证，推出1418元学期畅跳正式卡（较早鸟卡+70%），完成引流款+利润款产品矩阵；结合到课人数动态调整排课，从日均2节扩容至3节。留存与裂变：发布录课视频、课程预告提升粘性，配套老带新激励带动自然裂变。</p>
+              </div>
+            </div>
+            <div class="star-item">
+              <div class="star-icon r"><i data-lucide="bar-chart-3" class="w-5 h-5" style="color: var(--brand-tertiary);"></i></div>
+              <div>
+                <p class="star-label r" data-zh="Result · 结果" data-en="Result">Result · 结果</p>
+                <p class="star-text" data-zh="早鸟用户复购率超62%，叠加10名新客转化后累计付费用户80人，项目累计营收11.4万元，完整验证校园轻量化文娱项目的商业可行性。" data-en="Early-bird repurchase rate exceeded 62%; with 10 new conversions, reached 80 paying users total; project revenue reached ¥114K, validating the campus asset-light entertainment model.">早鸟用户复购率超62%，叠加10名新客转化后累计付费用户80人，项目累计营收11.4万元，完整验证校园轻量化文娱项目的商业可行性。</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-metrics">
+            <span class="modal-metric-item">¥11.4万</span>
+            <span class="modal-metric-item" data-zh="复购62%" data-en="62% repurchase">复购62%</span>
+            <span class="modal-metric-item" data-zh="500人社群" data-en="500 community">500人社群</span>
+            <span class="modal-metric-item" data-zh="80人付费" data-en="80 paid users">80人付费</span>
+          </div>
+          <div class="mt-5">
+            <p class="text-xs mb-2" style="color: var(--brand-muted-foreground);" data-zh="项目实拍" data-en="Project Photos">项目实拍</p>
+            <p class="modal-demo-label" data-zh="舞室合照" data-en="Dance Studio Group Photo">舞室合照</p>
+            <img src="assets/images/dance-photo.jpg" alt="舞室合照" class="modal-demo-img">
+            <p class="modal-demo-label" data-zh="项目复盘" data-en="Project Review">项目复盘</p>
+            <img src="assets/images/dance-summary.png" alt="项目复盘" class="modal-demo-img">
+          </div>
+        </div>
+      </div>
+
+      <!-- 能力详情弹窗 -->
+      <div class="modal-overlay" id="modal-skill">
+        <div class="modal-content" style="max-width: 480px;">
+          <button class="modal-close" data-close="modal-skill" aria-label="Close">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          <h3 class="text-xl font-bold mb-3" id="skill-modal-title"></h3>
+          <p class="text-sm leading-relaxed" style="color: var(--brand-muted-foreground);" id="skill-modal-desc"></p>
+        </div>
+      </div>
+
+      <!-- ==================== 能力泡泡 ==================== -->
+      <section id="skills" class="py-32 px-6 pg-section">
+        <div class="pg-bg"><div class="pg-grid secondary"></div></div>
+        <div class="max-w-6xl mx-auto pg-content">
+          <p class="section-label">SKILLS</p>
+          <h2 class="section-title mb-16" data-zh="能力与工具" data-en="Skills &amp; Tools">能力与工具</h2>
+          <div class="flex flex-wrap gap-4 md:gap-5 justify-center items-center py-12">
+            <span class="skill-bubble primary lg float-a" data-skill="sql">SQL</span>
+            <span class="skill-bubble secondary lg float-b" data-skill="python">Python</span>
+            <span class="skill-bubble accent lg float-c" data-skill="prompt">Prompt Engineering</span>
+            <span class="skill-bubble tertiary lg float-a" data-skill="agent">Agent</span>
+            <span class="skill-bubble warm float-b" data-skill="excel">Excel</span>
+            <span class="skill-bubble primary float-c" data-skill="rag">RAG</span>
+            <span class="skill-bubble secondary float-a" data-skill="data-analysis">数据分析</span>
+            <span class="skill-bubble accent float-b" data-skill="dashboard">经营看板</span>
+            <span class="skill-bubble tertiary float-c" data-skill="pricing">定价策略</span>
+            <span class="skill-bubble warm float-a" data-skill="gtm">GTM</span>
+            <span class="skill-bubble primary float-b" data-skill="growth">用户增长</span>
+            <span class="skill-bubble secondary float-c" data-skill="competitor">竞品分析</span>
+            <span class="skill-bubble accent lg float-c" data-skill="cet6">CET-6</span>
+            <span class="skill-bubble tertiary sm float-b" data-skill="ppt">PPT</span>
+            <span class="skill-bubble warm sm float-c" data-skill="figma">Figma</span>
+            <span class="skill-bubble primary sm float-a" data-skill="feishu">飞书</span>
+            <span class="skill-bubble secondary sm float-b" data-skill="jianying">剪映</span>
+            <span class="skill-bubble accent sm float-c" data-skill="accounting">初级会计</span>
+            <span class="skill-bubble tertiary sm float-a" data-skill="design">图文设计</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 关于我 ==================== -->
+      <section id="about" class="py-10 px-6" style="background: var(--brand-card);">
+        <div class="max-w-4xl mx-auto">
+          <p class="section-label">ABOUT</p>
+          <h2 class="section-title mb-6" data-zh="关于我" data-en="About Me">关于我</h2>
+          <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12">
+            <p class="text-base leading-relaxed flex-1" style="color: var(--brand-muted-foreground);" data-zh="上海立信会计金融学院信用管理学专业，2027届，成绩前25%。擅长用数据与策略解决复杂商业问题，在产品市场、管理咨询与审计领域有跨场景实践经验。" data-en="Credit Management major at Shanghai Lixin University, Class of 2027, top 25%. Skilled at solving complex business problems with data and strategy across product marketing, consulting, and auditing.">上海立信会计金融学院信用管理学专业，2027届，成绩前25%。擅长用数据与策略解决复杂商业问题，在产品市场、管理咨询与审计领域有跨场景实践经验。</p>
+            <div class="flex gap-6 flex-shrink-0">
+              <div>
+                <p class="text-xs mb-1" style="color: var(--brand-muted-foreground);" data-zh="语言" data-en="Language">语言</p>
+                <p class="text-sm font-medium">CET-6 · 普通话二乙</p>
+              </div>
+              <div>
+                <p class="text-xs mb-1" style="color: var(--brand-muted-foreground);" data-zh="证书" data-en="Certs">证书</p>
+                <p class="text-sm font-medium" data-zh="初级会计 · 驾驶证" data-en="Accounting · License">初级会计 · 驾驶证</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 联系 ==================== -->
+      <section id="contact" class="py-20 px-6 pg-section">
+        <div class="pg-bg"><div class="pg-grid accent"></div></div>
+        <div class="max-w-4xl mx-auto pg-content">
+          <p class="section-label">CONTACT</p>
+          <h2 class="section-title mb-12" data-zh="保持联系" data-en="Get in Touch">保持联系</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <a href="mailto:957095877@qq.com" data-dom-id="contact-email" class="contact-item">
+              <i data-lucide="mail" class="w-5 h-5" style="color: var(--brand-primary);"></i>
+              <div>
+                <p class="text-xs" style="color: var(--brand-muted-foreground);">Email</p>
+                <p class="text-sm font-medium">957095877@qq.com</p>
+              </div>
+            </a>
+            <a href="tel:13659959577" data-dom-id="contact-phone" class="contact-item">
+              <i data-lucide="phone" class="w-5 h-5" style="color: var(--brand-primary);"></i>
+              <div>
+                <p class="text-xs" style="color: var(--brand-muted-foreground);" data-zh="电话" data-en="Phone">电话</p>
+                <p class="text-sm font-medium">13659959577</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== Footer ==================== -->
+      <footer class="py-12 px-6 border-t" style="border-color: var(--brand-border);">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="text-sm" style="color: var(--brand-muted-foreground);">© 2026 刘沛嘉 · Peijia Liu</p>
+          <p class="text-xs" style="color: var(--brand-muted-foreground); font-family: var(--brand-font-mono);" data-zh="用数据与策略，把复杂问题变简单" data-en="Turning complex problems into simple solutions with data and strategy">用数据与策略，把复杂问题变简单</p>
+        </div>
+      </footer>
+
+      <!-- ==================== JavaScript ==================== -->
+      <script>
+        (function() {
+          var lang = 'zh';
+          var btn = document.getElementById('langToggle');
+          function applyLang(l) {
+            lang = l;
+            document.querySelectorAll('[data-zh]').forEach(function(el) {
+              el.textContent = el.getAttribute('data-' + l);
+            });
+            btn.textContent = l === 'zh' ? 'EN' : '中';
+          }
+          btn.addEventListener('click', function() {
+            applyLang(lang === 'zh' ? 'en' : 'zh');
+          });
+
+          // 模态框逻辑
+          var cards = document.querySelectorAll('[data-project]');
+          var overlays = document.querySelectorAll('.modal-overlay');
+          var body = document.body;
+
+          function openModal(id) {
+            var modal = document.getElementById('modal-' + id);
+            if (modal) {
+              modal.classList.add('active');
+              body.style.overflow = 'hidden';
+            }
+          }
+          function closeModal() {
+            overlays.forEach(function(o) { o.classList.remove('active'); });
+            body.style.overflow = '';
+          }
+
+          cards.forEach(function(card) {
+            card.addEventListener('click', function() {
+              openModal(card.getAttribute('data-project'));
+            });
+          });
+
+          overlays.forEach(function(overlay) {
+            overlay.addEventListener('click', function(e) {
+              if (e.target === overlay) closeModal();
+            });
+          });
+          document.querySelectorAll('[data-close]').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              e.stopPropagation();
+              closeModal();
+            });
+          });
+
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+          });
+
+          // 能力泡泡弹窗
+          var skillData = {
+            sql: { title: 'SQL', desc: '数据提取与清洗，支撑7家业务主体3000+条经营数据建模，直接支撑14.4亿元年度业绩考核。' },
+            python: { title: 'Python', desc: 'AI辅助编程，独立开发竞品分析工具与数据清洗脚本，分析效率从8h提升至40min。' },
+            prompt: { title: 'Prompt Engineering', desc: '熟练运用提示词工程驱动AI高质量输出，构建标准化分析框架与6步竞品分析流程。' },
+            agent: { title: 'Agent', desc: '熟练使用Coze/Dify/GPT/Trae搭建Agent与工作流，独立搭建10+个Agent，工作效率提升1100%+。' },
+            excel: { title: 'Excel', desc: '熟练运用数据透视表、XLOOKUP搭建分档测算模型与薪酬套改分析。' },
+            rag: { title: 'RAG', desc: '搭建证据层（本地库优先+联网搜索兜底），建立置信度分级与结论校验机制，降低AI幻觉风险。' },
+            'data-analysis': { title: '数据分析', desc: '全国大学生数据分析竞赛一等奖，具备系统化的数据建模与商业分析能力。' },
+            dashboard: { title: '经营看板', desc: '运用SQL+Python+Excel搭建RUM MIX经营看板，按收入、ASP、毛利率三层拆解0.5亿美元营收。' },
+            pricing: { title: '定价策略', desc: '负责100+SKU定价，引入AI Agent自动匹配，定价效率提升70%，全量准确率100%。' },
+            gtm: { title: 'GTM', desc: '参与商用平板GTM上市全流程，协同5个跨部门打通市场洞察、定价、PVT验证、POC试点。' },
+            growth: { title: '用户增长', desc: '校园舞室0到1冷启动，两周沉淀500人私域社群，完整跑通获客-转化-留存-裂变闭环。' },
+            competitor: { title: '竞品分析', desc: '独立开发AI竞品分析工具，输出7大标准化模块，分析维度覆盖率达100%。' },
+            cet6: { title: 'CET-6', desc: '具备英文读写能力，可处理商务沟通与海外客户基础交流。' },
+            ppt: { title: 'PPT', desc: '熟练制作商业报告与方案演示文稿。' },
+            figma: { title: 'Figma', desc: '界面与原型设计，用于竞品分析工具前端开发。' },
+            feishu: { title: '飞书', desc: '熟练使用飞书协同办公，搭建AI工作流实现纪要自动化。' },
+            jianying: { title: '剪映', desc: '视频剪辑，用于舞室课程预告与录课视频制作。' },
+            accounting: { title: '初级会计', desc: '持有初级会计职称，具备财务核算与审计基础。' },
+            design: { title: '图文设计', desc: '熟练使用可画、秀米进行海报与微信公众号图文设计，用于活动宣传与推文裂变。' }
+          };
+
+          document.querySelectorAll('[data-skill]').forEach(function(bubble) {
+            bubble.addEventListener('click', function() {
+              var key = bubble.getAttribute('data-skill');
+              var data = skillData[key];
+              if (data) {
+                document.getElementById('skill-modal-title').textContent = data.title;
+                document.getElementById('skill-modal-desc').textContent = data.desc;
+                document.getElementById('modal-skill').classList.add('active');
+                body.style.overflow = 'hidden';
+              }
+            });
+          });
+        })();
+      </script>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
+
